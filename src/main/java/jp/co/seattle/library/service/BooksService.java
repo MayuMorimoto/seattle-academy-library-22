@@ -77,4 +77,15 @@ public class BooksService {
 
         jdbcTemplate.update(sql);
     }
+    /**
+     * 書籍を削除する
+     *
+     * @param bookInfo 書籍情報
+     */
+    public void deleteBook(int bookId) {
+
+        String sql = "delete from books where id = " + bookId;
+
+        jdbcTemplate.update(sql);
+    }
 }
