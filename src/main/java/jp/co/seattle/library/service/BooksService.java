@@ -30,13 +30,18 @@ public class BooksService {
      * @return 書籍リスト
      */
     public List<BookInfo> getBookList() {
+    	try {
+    		//取得したい情報を取得するようにSQLを修正
+            List<BookInfo> getedBookList = jdbcTemplate.query(
+                    "select id,title,author,publisher,publish_date,thumbnail_url from books order by title",
+                    new BookInfoRowMapper());
+            return getedBookList;
+    	}catch(Exception e) {
+    		return null;
+    	}
+        
 
-        // TODO 取得したい情報を取得するようにSQLを修正
-        List<BookInfo> getedBookList = jdbcTemplate.query(
-                "select * from books",
-                new BookInfoRowMapper());
-
-        return getedBookList;
+        
     }
 
     /**
